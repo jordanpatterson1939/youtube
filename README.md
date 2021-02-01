@@ -11,7 +11,7 @@ Simple command line tool for downloading audio from YouTube. Can also download v
 
 ```json
     {
-        "musicfolder" : "path to save audio files goes here",
-        "videofolder" : "path to save video files goes here"
+        "musicfolder" : "path/to/save/audio/files/goes/here",
+        "videofolder" : "path/to/save/video/files/goes/here"
     }
 ```

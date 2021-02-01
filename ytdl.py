@@ -8,8 +8,8 @@ from http.client import RemoteDisconnected
 from socket import gaierror
 from urllib.error import URLError
 
-musicfolder = r'C:\Users\jorda\Downloads\music'
-videofolder = r'C:\Users\jorda\Downloads\videos'
+musicfolder = 'path to save audio files goes here'
+videofolder = 'path to save video files goes here'
 
 banner = '''
  ▄· ▄▌      ▄• ▄▌▄▄▄▄▄▄• ▄▌▄▄▄▄· ▄▄▄ .    ·▄▄▄▄        ▄▄▌ ▐ ▄▌ ▐ ▄ ▄▄▌         ▄▄▄· ·▄▄▄▄  ▄▄▄ .▄▄▄  

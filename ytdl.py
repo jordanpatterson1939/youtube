@@ -141,7 +141,10 @@ def menu():
             break
 
 def main():
-    os.system('cls')
+    if os.name=='nt':
+        os.system('cls')
+    else:
+        os.system('clear')
     print(banner)
     menu()
 

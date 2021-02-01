@@ -1,0 +1,6 @@
+README.md
+setup.py
+https_github.com_jordanpatterson1939.egg-info/PKG-INFO
+https_github.com_jordanpatterson1939.egg-info/SOURCES.txt
+https_github.com_jordanpatterson1939.egg-info/dependency_links.txt
+https_github.com_jordanpatterson1939.egg-info/top_level.txt

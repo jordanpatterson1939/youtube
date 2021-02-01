@@ -1,37 +1,19 @@
 # -*- coding: utf-8 -*-
 import os
+import json
 import pyperclip as pc
 import subprocess
-# from pytube import YouTube
 import pytube
 from http.client import RemoteDisconnected
 from socket import gaierror
 from urllib.error import URLError
 
-musicfolder = 'path to save audio files goes here'
-videofolder = 'path to save video files goes here'
 
-banner = '''
- ▄· ▄▌      ▄• ▄▌▄▄▄▄▄▄• ▄▌▄▄▄▄· ▄▄▄ .    ·▄▄▄▄        ▄▄▌ ▐ ▄▌ ▐ ▄ ▄▄▌         ▄▄▄· ·▄▄▄▄  ▄▄▄ .▄▄▄  
-▐█▪██▌▪     █▪██▌•██  █▪██▌▐█ ▀█▪▀▄.▀·    ██▪ ██ ▪     ██· █▌▐█•█▌▐███•  ▪     ▐█ ▀█ ██▪ ██ ▀▄.▀·▀▄ █·
-▐█▌▐█▪ ▄█▀▄ █▌▐█▌ ▐█.▪█▌▐█▌▐█▀▀█▄▐▀▀▪▄    ▐█· ▐█▌ ▄█▀▄ ██▪▐█▐▐▌▐█▐▐▌██▪   ▄█▀▄ ▄█▀▀█ ▐█· ▐█▌▐▀▀▪▄▐▀▀▄ 
- ▐█▀·.▐█▌.▐▌▐█▄█▌ ▐█▌·▐█▄█▌██▄▪▐█▐█▄▄▌    ██. ██ ▐█▌.▐▌▐█▌██▐█▌██▐█▌▐█▌▐▌▐█▌.▐▌▐█ ▪▐▌██. ██ ▐█▄▄▌▐█•█▌
-  ▀ •  ▀█▄▀▪ ▀▀▀  ▀▀▀  ▀▀▀ ·▀▀▀▀  ▀▀▀     ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀▀ ▀▪▀▀ █▪.▀▀▀  ▀█▄▀▪ ▀  ▀ ▀▀▀▀▀•  ▀▀▀ .▀  ▀
+f = open('config.json','r')
+folders = json.load(f)
+musicfolder = folders['musicfolder']
+videofolder = folders['videofolder']
 
-
-'''
-downloadindicator='''
-\t░░░░░░░░░░░║
-\t░░▄█▀▄░░░░░║░░░░░░▄▀▄▄
-\t░░░░░░▀▄░░░║░░░░▄▀
-\t░▄▄▄░░░░█▄▄▄▄▄▄█░░░░▄▄▄
-\t▀░░░▀█░█▀░░▐▌░░▀█░█▀░░░▀
-\t░░░░░░██░░▀▐▌▀░░██
-\t░▄█▀▀▀████████████▀▀▀█
-\t█░░░░░░██████████░░░░░▀▄
-\t█▄░░░█▀░░▀▀▀▀▀▀░░▀█░░░▄█
-\t░▀█░░░█░░░░░░░░░░█░░░█▀
-'''
 def getvideofromurl(url):
     print("####  Getting Video from url: {0}".format(url))
     video = pytube.YouTube(url,on_progress_callback=progressBar)
@@ -54,6 +36,27 @@ def viewstreamsfordownload(streams,title,mp3=True):
         else:
             return bitrates[fastest],objs[0]
 
+banner = '''
+ ▄· ▄▌      ▄• ▄▌▄▄▄▄▄▄• ▄▌▄▄▄▄· ▄▄▄ .    ·▄▄▄▄        ▄▄▌ ▐ ▄▌ ▐ ▄ ▄▄▌         ▄▄▄· ·▄▄▄▄  ▄▄▄ .▄▄▄  
+▐█▪██▌▪     █▪██▌•██  █▪██▌▐█ ▀█▪▀▄.▀·    ██▪ ██ ▪     ██· █▌▐█•█▌▐███•  ▪     ▐█ ▀█ ██▪ ██ ▀▄.▀·▀▄ █·
+▐█▌▐█▪ ▄█▀▄ █▌▐█▌ ▐█.▪█▌▐█▌▐█▀▀█▄▐▀▀▪▄    ▐█· ▐█▌ ▄█▀▄ ██▪▐█▐▐▌▐█▐▐▌██▪   ▄█▀▄ ▄█▀▀█ ▐█· ▐█▌▐▀▀▪▄▐▀▀▄ 
+ ▐█▀·.▐█▌.▐▌▐█▄█▌ ▐█▌·▐█▄█▌██▄▪▐█▐█▄▄▌    ██. ██ ▐█▌.▐▌▐█▌██▐█▌██▐█▌▐█▌▐▌▐█▌.▐▌▐█ ▪▐▌██. ██ ▐█▄▄▌▐█•█▌
+  ▀ •  ▀█▄▀▪ ▀▀▀  ▀▀▀  ▀▀▀ ·▀▀▀▀  ▀▀▀     ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀▀ ▀▪▀▀ █▪.▀▀▀  ▀█▄▀▪ ▀  ▀ ▀▀▀▀▀•  ▀▀▀ .▀  ▀
+
+
+'''
+downloadindicator='''
+\t░░░░░░░░░░░║
+\t░░▄█▀▄░░░░░║░░░░░░▄▀▄▄
+\t░░░░░░▀▄░░░║░░░░▄▀
+\t░▄▄▄░░░░█▄▄▄▄▄▄█░░░░▄▄▄
+\t▀░░░▀█░█▀░░▐▌░░▀█░█▀░░░▀
+\t░░░░░░██░░▀▐▌▀░░██
+\t░▄█▀▀▀████████████▀▀▀█
+\t█░░░░░░██████████░░░░░▀▄
+\t█▄░░░█▀░░▀▀▀▀▀▀░░▀█░░░▄█
+\t░▀█░░░█░░░░░░░░░░█░░░█▀
+'''
 def savemp3(stream,title):
     os.chdir(musicfolder)
     print(downloadindicator)

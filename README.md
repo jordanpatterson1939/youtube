@@ -21,3 +21,4 @@ Simple command line tool for downloading audio from YouTube. Can also download v
 # Todo:
 * Add option to set filename after downloading.
 * Command line argument parsing capabilities.
+* Add option to paste different link

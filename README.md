@@ -17,3 +17,7 @@ Simple command line tool for downloading audio from YouTube. Can also download v
         "videofolder" : "path/to/save/video/files/goes/here"
     }
 ```
+
+# Todo:
+* Add option to set filename after downloading.
+* Command line argument parsing capabilities.

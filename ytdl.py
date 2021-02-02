@@ -77,7 +77,7 @@ def savemp3(stream,title):
 ''')
         print("There was a network error while attempting to download the file, \nkindly verify that you have an internet connection and try gain in a moment.\nGoodbye, for now.")
         exit(1)
-    destination = title.replace('"','').replace(':','-').replace('|','-')+'.mp3'
+    destination = title.replace('"','').replace(':','-').replace('|','-').replace('?','_')+'.mp3'
     FNULL = open(os.devnull, 'w')
     ffmpeg = 'ffmpeg -i {0} -vn -ab 128k -ar 44100 -y "{1}"'.format('temp.webm',destination)
     subprocess.run(ffmpeg,stdout=FNULL,stderr=subprocess.STDOUT)
@@ -105,7 +105,7 @@ def savevideo(audiostream,videostream,title):
 ''')
         print("There was a network error while attempting to download the files, \nkindly verify that you have an internet connection and try gain in a moment.\nGoodbye, for now.")
         exit(1)
-    destination = title.replace('"','').replace(':','-').replace('|','-')+'.mp4'
+    destination = title.replace('"','').replace(':','-').replace('|','-').replace('?','_')+'.mp4'
     command = 'ffmpeg -i {0} -i {1} -acodec copy -c:v copy "{2}"'.format('temp.webm','temp.mp4',destination)
     FNULL = open(os.devnull, 'w')
     #progress bar

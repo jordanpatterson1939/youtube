@@ -58,10 +58,25 @@ downloadindicator='''
 \t░▀█░░░█░░░░░░░░░░█░░░█▀
 '''
 def savemp3(stream,title):
-    os.chdir(musicfolder)
+    try:
+        os.chdir(musicfolder)
+    except FileNotFoundError:
+        print("\nIt appears that your config variables were not \nset, or the folder you entered to save audio/mp3 files \ndoes not exist. Not sure where to save. Aborting.")
+        exit(1)
     print(downloadindicator)
     print("\t"+title.replace('"',''))
-    stream.download(filename='temp')
+    try:
+        stream.download(filename='temp')
+    except (ConnectionResetError,gaierror,RemoteDisconnected,URLError):
+        print('''
+\t──▒▒▒▒▒▒───▄████▄
+\t─▒─▄▒─▄▒──███▄█▀
+\t─▒▒▒▒▒▒▒─▐████──█─█
+\t─▒▒▒▒▒▒▒──█████▄
+\t─▒─▒─▒─▒───▀████▀
+''')
+        print("There was a network error while attempting to download the file, \nkindly verify that you have an internet connection and try gain in a moment.\nGoodbye, for now.")
+        exit(1)
     destination = title+'.mp3'
     destination = destination.replace('"','')
     FNULL = open(os.devnull, 'w')
@@ -71,13 +86,28 @@ def savemp3(stream,title):
 
 
 def savevideo(audiostream,videostream,title):
-    os.chdir(videofolder)
+    try:
+        os.chdir(videofolder)
+    except FileNotFoundError:
+        print("\nIt appears that your config variables were not \nset, or the folder you entered to save video files \ndoes not exist. Not sure where to save. Aborting.")
+        exit(1)
     print(downloadindicator)
     print("\t"+title.replace('"',''))
-    audiostream.download(filename='temp')
-    videostream.download(filename='temp')
-    title = title.replace('"','')
-    command = 'ffmpeg -i {0} -i {1} -acodec copy -vcodec copy "{2}"'.format('temp.webm','temp.mp4',title+'.mp4')
+    try:
+        audiostream.download(filename='temp')
+        videostream.download(filename='temp')
+    except (ConnectionResetError,gaierror,RemoteDisconnected,URLError):
+        print('''
+\t──▒▒▒▒▒▒───▄████▄
+\t─▒─▄▒─▄▒──███▄█▀
+\t─▒▒▒▒▒▒▒─▐████──█─█
+\t─▒▒▒▒▒▒▒──█████▄
+\t─▒─▒─▒─▒───▀████▀
+''')
+        print("There was a network error while attempting to download the files, \nkindly verify that you have an internet connection and try gain in a moment.\nGoodbye, for now.")
+        exit(1)
+    destination = title.replace('"','').replace(':','-')+'.mp4'
+    command = 'ffmpeg -i {0} -i {1} -acodec copy -c:v copy "{2}"'.format('temp.webm','temp.mp4',destination)
     FNULL = open(os.devnull, 'w')
     #progress bar
     subprocess.run(command,stdout=FNULL,stderr=subprocess.STDOUT)
@@ -97,13 +127,15 @@ def progressBar(stream,chunk,bytes_remaining):
 def getdownloadoption(title):
     while True:
         print("####  Select your download option for: {0}".format(title))
-        print("####  (a) AUDIO\t(v) VIDEO")
+        print("####  (a) AUDIO    (v) VIDEO    (q) EXIT")
         print("####  Enter: ",end='')
         while True:
             opt = input().upper()
             if opt=='A' or opt=='V':
                 break
-            print("####  Enter 'a' for audio OR 'v' for video: ",end='')
+            elif opt=='Q':
+                exit(1)
+            print("####  Enter 'a' for Audio OR 'v' for Video OR 'q' to Exit: ",end='')
         return opt
 
 def menu():
@@ -123,8 +155,10 @@ def menu():
                     video = getvideofromurl(url)
                     break
                 except pytube.exceptions.RegexMatchError:
-                    print("####  The link provided was not valid.\n####  Please paste a valid link here: ",end='')
+                    print("####  The link provided was not valid.\n####  Please paste a valid link here or type'q' to quit: ",end='')
                     url = input()
+                    if url.upper()=='Q':
+                        exit(1)
                 except (RemoteDisconnected,gaierror,URLError,ConnectionResetError):
                     print("####  There was a network error while attempting to fetch video data. Try again later.")
                     exit(1)

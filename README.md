@@ -23,3 +23,4 @@ Simple command line tool for downloading audio from YouTube. Can also download v
 * Command line argument parsing capabilities.
 * Add option to paste different link
 * Option to download entire playlists
+* Add progress bar to show progress when running ffmpeg commands

@@ -167,7 +167,11 @@ def menu():
                 stream = viewstreamsfordownload(video.streams,video.title,mp3=(opt=='A'))              
                 savemp3(stream,video.title)
             else:
-                audio_stream,video_stream = viewstreamsfordownload(video.streams,video.title,mp3=(opt=='A'))
+                try:
+                    audio_stream,video_stream = viewstreamsfordownload(video.streams,video.title,mp3=(opt=='A'))
+                except IndexError:
+                    print("####  No videos were returned. Try a different link.")
+                    continue
                 savevideo(audio_stream,video_stream,video.title)
         elif choice=='Q':
             print("\n\t\tExitting. Good-bye!")

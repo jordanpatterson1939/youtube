@@ -1,26 +1,36 @@
-# YTDL
+# YouTube - CL
 
-Simple command line tool for downloading audio from YouTube. Can also download videos. Requires ffmpeg to already be installed.
+Simple command line tool for downloading audio and video from YouTube.
 
+**PLEASE NOTE: Requires ffmpeg to already be installed.**
 
-**Download**
-
-> git clone https://github.com/jordanpatterson1939/ytdl.git
-
-> setup.py install
-
-> Edit config.json and insert the location where you want your audio and video files to go.   
-
-```json
-    {
-        "musicfolder" : "path/to/save/audio/files/goes/here",
-        "videofolder" : "path/to/save/video/files/goes/here"
-    }
+## Installation
+```
+pip install youtube-cl
 ```
 
-# Todo:
-* Add option to set filename after downloading.
-* Command line argument parsing capabilities.
-* Add option to paste different link
-* Option to download entire playlists
-* Add progress bar to show progress when running ffmpeg commands
+## Usage
+### Download audio/mp3 
+```bash
+youtube-cl mp3 https://youtu.be/tkFOBx6j0l8
+```
+
+### Download video/mp4
+```bash
+youtube-cl mp4 https://youtu.be/tkFOBx6j0l8
+```
+
+### Documentation
+```text
+usage: youtube-cl [-h] option youtube_url
+
+positional arguments:
+  option       Option for downloading. [v] or [mp4] for video, [m] or [a] or [mp3] for audio
+  youtube_url  URL of the youtube video
+
+optional arguments:
+  -h, --help   show this help message and exit
+```
+
+
+

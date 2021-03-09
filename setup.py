@@ -5,7 +5,7 @@ with open("README.md","r") as fh:
 
 setuptools.setup(
     name='youtube-cl',
-    version='0.0.2',
+    version='0.0.3',
     scripts=['youtube-cl'],
     author="Jordan Patterson",
     author_email="jordanpatterson1939@gmail.com",

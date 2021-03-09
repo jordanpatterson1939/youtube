@@ -19,7 +19,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=[
-        '<pytube>'
-    ]
+    install_requires=['pytube'],
+    python_requires='>=3',
 )

@@ -20,7 +20,7 @@ youtube-cl mp3 https://youtu.be/tkFOBx6j0l8
 youtube-cl mp4 https://youtu.be/tkFOBx6j0l8
 ```
 
-### Documentation
+### Command Line Arguments
 ```text
 usage: youtube-cl [-h] option youtube_url
 
@@ -33,4 +33,5 @@ optional arguments:
 ```
 
 
-
+### Todo
+- [ ] Interactive mode

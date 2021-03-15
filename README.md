@@ -12,17 +12,17 @@ pip install youtube-cl
 ## Usage
 ### Download audio/mp3 
 ```bash
-youtube-cl mp3 https://youtu.be/tkFOBx6j0l8
+ytcl mp3 https://youtu.be/tkFOBx6j0l8
 ```
 
 ### Download video/mp4
 ```bash
-youtube-cl mp4 https://youtu.be/tkFOBx6j0l8
+ytcl mp4 https://youtu.be/tkFOBx6j0l8
 ```
 
 ### Command Line Arguments
 ```text
-usage: youtube-cl [-h] option youtube_url
+usage: ytcl [-h] option youtube_url
 
 positional arguments:
   option       Option for downloading. [v] or [mp4] for video, [m] or [a] or [mp3] for audio

@@ -5,8 +5,8 @@ with open("README.md","r") as fh:
 
 setuptools.setup(
     name='youtube-cl',
-    version='0.0.3',
-    scripts=['youtube-cl'],
+    version='0.0.4',
+    scripts=['ytcl'],
     author="Jordan Patterson",
     author_email="jordanpatterson1939@gmail.com",
     description="Command line tool for downloading video and audio from YouTube",

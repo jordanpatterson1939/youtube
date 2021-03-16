@@ -12,7 +12,7 @@ setuptools.setup(
     description="Command line tool for downloading video and audio from YouTube",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/jordanpatterson/youtube-cl",
+    url="https://github.com/jordanpatterson1939/youtube-cl",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
